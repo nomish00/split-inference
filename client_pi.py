@@ -9,10 +9,10 @@ import torchvision.models as models
 from PIL import Image
 from torchvision import transforms
 
-import split_inference_pb2 as pb2
-import split_inference_pb2_grpc as pb2_grpc
+import inference_pb2 as pb2
+import inference_pb2_grpc as pb2_grpc
 
-SERVER_ADDR = "10.74.1.50:50051"
+SERVER_ADDR = "192.168.1.10:50051"
 IMAGE_PATH = "sample.jpg"
 CUTOFF = 6
 DEVICE = "cpu"
@@ -33,10 +33,7 @@ def preprocess(image_path):
         transforms.Resize(256),
         transforms.CenterCrop(224),
         transforms.ToTensor(),
-        transforms.Normalize(
-            mean=[0.485, 0.456, 0.406],
-            std=[0.229, 0.224, 0.225]
-        ),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     ])
     img = Image.open(image_path).convert("RGB")
     return tfm(img).unsqueeze(0)
@@ -48,7 +45,6 @@ def main():
     request_id = str(uuid.uuid4())
 
     t0 = time.perf_counter()
-
     with torch.no_grad():
         t1 = time.perf_counter()
         activations = early_model(x)

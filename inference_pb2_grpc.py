@@ -3,9 +3,9 @@
 import grpc
 import warnings
 
-import split_inference_pb2 as split__inference__pb2
+import inference_pb2 as inference__pb2
 
-GRPC_GENERATED_VERSION = '1.80.0'
+GRPC_GENERATED_VERSION = '1.71.0'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -18,7 +18,7 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + ' but the generated code in split_inference_pb2_grpc.py depends on'
+        + f' but the generated code in inference_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -36,13 +36,13 @@ class SplitInferenceStub(object):
         """
         self.Infer = channel.unary_unary(
                 '/splitinference.SplitInference/Infer',
-                request_serializer=split__inference__pb2.TensorRequest.SerializeToString,
-                response_deserializer=split__inference__pb2.TensorReply.FromString,
+                request_serializer=inference__pb2.TensorRequest.SerializeToString,
+                response_deserializer=inference__pb2.TensorReply.FromString,
                 _registered_method=True)
         self.Health = channel.unary_unary(
                 '/splitinference.SplitInference/Health',
-                request_serializer=split__inference__pb2.HealthRequest.SerializeToString,
-                response_deserializer=split__inference__pb2.HealthReply.FromString,
+                request_serializer=inference__pb2.HealthRequest.SerializeToString,
+                response_deserializer=inference__pb2.HealthReply.FromString,
                 _registered_method=True)
 
 
@@ -66,13 +66,13 @@ def add_SplitInferenceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Infer': grpc.unary_unary_rpc_method_handler(
                     servicer.Infer,
-                    request_deserializer=split__inference__pb2.TensorRequest.FromString,
-                    response_serializer=split__inference__pb2.TensorReply.SerializeToString,
+                    request_deserializer=inference__pb2.TensorRequest.FromString,
+                    response_serializer=inference__pb2.TensorReply.SerializeToString,
             ),
             'Health': grpc.unary_unary_rpc_method_handler(
                     servicer.Health,
-                    request_deserializer=split__inference__pb2.HealthRequest.FromString,
-                    response_serializer=split__inference__pb2.HealthReply.SerializeToString,
+                    request_deserializer=inference__pb2.HealthRequest.FromString,
+                    response_serializer=inference__pb2.HealthReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -100,8 +100,8 @@ class SplitInference(object):
             request,
             target,
             '/splitinference.SplitInference/Infer',
-            split__inference__pb2.TensorRequest.SerializeToString,
-            split__inference__pb2.TensorReply.FromString,
+            inference__pb2.TensorRequest.SerializeToString,
+            inference__pb2.TensorReply.FromString,
             options,
             channel_credentials,
             insecure,
@@ -127,8 +127,8 @@ class SplitInference(object):
             request,
             target,
             '/splitinference.SplitInference/Health',
-            split__inference__pb2.HealthRequest.SerializeToString,
-            split__inference__pb2.HealthReply.FromString,
+            inference__pb2.HealthRequest.SerializeToString,
+            inference__pb2.HealthReply.FromString,
             options,
             channel_credentials,
             insecure,
