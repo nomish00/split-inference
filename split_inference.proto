@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package splitinference;
+
+service SplitInference {
+  rpc Infer (TensorRequest) returns (TensorReply);
+  rpc Health (HealthRequest) returns (HealthReply);
+}
+
+message TensorRequest {
+  bytes data = 1;
+  repeated int32 shape = 2;
+  string dtype = 3;
+  string request_id = 4;
+}
+
+message TensorReply {
+  bytes data = 1;
+  repeated int32 shape = 2;
+  string dtype = 3;
+  string request_id = 4;
+  string predicted_class = 5;
+}
+
+message HealthRequest {}
+
+message HealthReply {
+  string status = 1;
+}
