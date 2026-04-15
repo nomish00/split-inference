@@ -12,7 +12,7 @@ from torchvision import transforms
 import inference_pb2 as pb2
 import inference_pb2_grpc as pb2_grpc
 
-SERVER_ADDR = "192.168.1.10:50051"
+SERVER_ADDR = "10.74.1.50:50051"
 IMAGE_PATH = "sample.jpg"
 CUTOFF = 6
 DEVICE = "cpu"
