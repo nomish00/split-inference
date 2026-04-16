@@ -22,14 +22,12 @@ split-inference-starter/
 │   ├── client.txt
 │   ├── server-cpu.txt
 │   └── dev.txt
-├── scripts/
-│   ├── bootstrap-client.sh
-│   ├── bootstrap-server-cpu.sh
-│   ├── generate_proto.sh
-│   ├── run-client.sh
-│   └── run-server.sh
-└── docs/
-    └── setup-notes.md
+└── scripts/
+    ├── bootstrap-client.sh
+    ├── bootstrap-server-cpu.sh
+    ├── generate_proto.sh
+    ├── run-client.sh
+    └── run-server.sh
 ```
 
 ## Instalacja
@@ -85,11 +83,3 @@ bash scripts/run-client.sh
 5. na Pi: `bash scripts/generate_proto.sh`
 6. ustaw `SERVER_ADDR` w `client_pi.py`
 7. `bash scripts/run-client.sh`
-
-## Uwaga o plikach pb2
-
-W tym repo możesz:
-- commitować `inference_pb2.py` i `inference_pb2_grpc.py`, albo
-- generować je lokalnie po każdej zmianie `inference.proto`.
-
-Dla prostego projektu badawczego wygodne jest **commitowanie tych plików do repo**.
