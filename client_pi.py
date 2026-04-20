@@ -67,7 +67,7 @@ def main():
     remote_ms = (time.perf_counter() - t2) * 1000
     total_ms = (time.perf_counter() - t0) * 1000
 
-    logits = torch.load(io.BytesIO(response.data), map_location=DEVICE)
+    logits = torch.load(io.BytesIO(response.data), map_location=DEVICE, weights_only=True)
     pred_idx = int(torch.argmax(logits, dim=1).item())
 
     print({
