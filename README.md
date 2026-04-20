@@ -16,6 +16,9 @@ split-inference-starter/
 ├── inference_pb2_grpc.py
 ├── sample.jpg
 ├── .gitignore
+├── client_send_to_remote.py
+├── server_full_inference.py
+├── local_processing.py
 ├── README.md
 ├── requirements/
 │   ├── base.txt
@@ -83,3 +86,9 @@ bash scripts/run-client.sh
 5. na Pi: `bash scripts/generate_proto.sh`
 6. ustaw `SERVER_ADDR` w `client_pi.py`
 7. `bash scripts/run-client.sh`
+
+
+## Kolejne testy
+1. client_send_to_remote.py - client dla full inference, jedynie wysyła obraz do serwera 
+2. server_full_inference.py - odbiera obraz i wykonuje całą klasyfikację
+3. local_processing.py - klasyfikacja lokalna (np. tylko RPI)
