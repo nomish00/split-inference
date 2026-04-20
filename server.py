@@ -66,7 +66,13 @@ def serve():
     server.add_insecure_port(f"[::]:{PORT}")
     server.start()
     print(f"gRPC server listening on :{PORT}, device={DEVICE}")
-    server.wait_for_termination()
+    
+    try:
+        server.wait_for_termination()
+    except KeyboardInterrupt:
+        print("\nShutting down gracefully...")
+        server.stop(grace=5)  # 5 seconds for ongoing requests to finish
+        print("Server stopped.")
 
 
 if __name__ == "__main__":
