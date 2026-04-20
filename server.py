@@ -37,7 +37,7 @@ LATE_MODEL = LateMobileNetV2(CUTOFF).eval().to(DEVICE)
 class SplitInferenceService(pb2_grpc.SplitInferenceServicer):
     def Infer(self, request, context):
         t0 = time.perf_counter()
-        tensor = torch.load(io.BytesIO(request.data), map_location=DEVICE)
+        tensor = torch.load(io.BytesIO(request.data), map_location=DEVICE, weights_only=True)
         with torch.no_grad():
             logits = LATE_MODEL(tensor)
             pred_idx = int(torch.argmax(logits, dim=1).item())
