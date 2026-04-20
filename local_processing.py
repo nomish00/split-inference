@@ -27,7 +27,7 @@ def main():
     label = weights.meta["categories"][class_id]
 
     print({
-        "mode": "server_only",
+        "mode": "local",
         "device": DEVICE,
         "total_ms": round(total_ms, 2),
         "predicted_class_id": class_id,
