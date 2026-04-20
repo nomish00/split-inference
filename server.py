@@ -11,7 +11,8 @@ import inference_pb2 as pb2
 import inference_pb2_grpc as pb2_grpc
 
 PORT = 50051
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+#DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+DEVICE = "cpu"
 CUTOFF = 6
 
 
